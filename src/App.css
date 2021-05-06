@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-size: 25px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(90deg, rgba(19, 131, 82, 1) 0%, rgba(16, 94, 138, 1) 100%);
+  font-family: "Lato", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.backside {
+  background-color: white;
+  margin: 0 auto;
+  max-width: 700px;
+  margin-top: 100px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.form-style {
+  display: flex;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-style > select {
+  margin: 0px 10px;
+  width: 50%;
+}
+
+.input-style {
+  width: 100%;
+}
+
+.choice {
+  display: flex;
+  margin: 10px 0px;
+}
+
+.choice > p {
+  padding-right: 10px;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.for-item {
+  max-width: 450px;
+  word-wrap: break-word;
+}
+
+.priority-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.priority {
+  font-size: 15px;
+  margin-right: 15px;
+  font-weight: 700;
+}
+
+.red-text {
+  color: red;
+}
+
+.yellow-text {
+  color: #d0d007;
+}
+
+.green-text {
+  color: #24cc24;
+}
+
+.none-text {
+  display: none;
+}
+
+.images-item {
+  margin: 4px;
+}
+
+.for-submit {
+  box-shadow: 0px 1px 0px 0px #9fb4f2;
+  background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+  background-color: #7892c2;
+  border-radius: 6px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966;
+}
+
+.for-submit:hover {
+  background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+  background-color: #476e9e;
+}
+.for-submit:active {
+  position: relative;
+  top: 1px;
+}
+
+.done {
+  text-decoration: line-through;
 }
