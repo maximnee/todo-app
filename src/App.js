@@ -3,13 +3,14 @@ import "./App.css";
 import FilterChoise from "./components/FilterChoise";
 import FormAddTodo from "./components/FormAddTodo";
 import TodoList from "./components/TodoList";
+import ProgressBar from "./components/ProgressBar";
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { text: "ноль", id: 0, completed: false, priorityTask: "Medium priority" },
-    { text: "один", id: 1, completed: false, priorityTask: "Medium priority" },
-    { text: "два", id: 2, completed: false, priorityTask: "Medium priority" },
-    { text: "три", id: 3, completed: false, priorityTask: "Medium priority" },
+    { text: "zero", id: 0, completed: false, priorityTask: "Medium priority" },
+    { text: "one", id: 1, completed: false, priorityTask: "Medium priority" },
+    { text: "two", id: 2, completed: true, priorityTask: "Medium priority" },
+    { text: "three", id: 3, completed: false, priorityTask: "Medium priority" },
   ]);
 
   function newTask(text, priorityTask) {
@@ -28,7 +29,6 @@ function App() {
   }
 
   function changeCompleted(id) {
-    console.log("Вы нажали на кнопку done с id " + id);
     setTodoList(
       todoList.map((element) => {
         if (element.id === id) {
@@ -52,21 +52,18 @@ function App() {
 
   function choiceFilter(value) {
     console.log(value);
-    // let newFilteredList = todoList;
-    // if (value === "All") {
-    //   newFilteredList = todoList;
-    //   console.log(filteredList);
-    // }
+    // let newFilteredList = todoList.slice();
     // if (value === "Done") {
     //   newFilteredList = todoList.filter((item) => item.completed);
-    //   console.log(filteredList);
+    //   console.log(newFilteredList);
     // }
     // if (value === "Undone") {
     //   newFilteredList = todoList.filter((item) => !item.completed);
-    //   console.log(filteredList);
+    //   console.log(newFilteredList);
     // }
-    // setFilteredList(newFilteredList);
+    // setTodoList(newFilteredList);
   }
+
   return (
     <div className="main">
       <div className="backside">
@@ -79,6 +76,7 @@ function App() {
         </div>
 
         <TodoList todoList={todoList} changeCompleted={changeCompleted} deleteTask={deleteTask} />
+        <ProgressBar todoList={todoList} />
       </div>
     </div>
   );

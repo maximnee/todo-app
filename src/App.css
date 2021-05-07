@@ -1,13 +1,12 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 25px;
 }
 
 body {
   background: linear-gradient(90deg, rgba(19, 131, 82, 1) 0%, rgba(16, 94, 138, 1) 100%);
-  font-family: "Lato", sans-serif;
 }
 
 .backside {
@@ -111,7 +110,6 @@ ul {
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: Arial;
   font-size: 15px;
   font-weight: bold;
   padding: 6px 24px;
@@ -130,4 +128,22 @@ ul {
 
 .done {
   text-decoration: line-through;
+}
+
+.progress {
+  background-color: #d8d8d8;
+  border-radius: 15px;
+}
+
+.progress-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to left, #f2709c, #ff9472);
+  border-radius: 15px;
+  transition: 1s ease 0.3s;
+}
+
+.progress-text {
+  min-width: 190px;
 }

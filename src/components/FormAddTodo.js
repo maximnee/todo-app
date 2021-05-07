@@ -3,14 +3,13 @@ import { useState } from "react";
 
 export default function FormAddTodo({ createNewTask }) {
   const [value, setValue] = useState("");
-  const [prio, setPrio] = useState("High priority");
+  const [prio, setPrio] = useState("None");
 
   function addToDo(event) {
     event.preventDefault();
 
     if (value.trim()) {
       createNewTask(value, prio);
-      console.log(prio);
       setValue("");
     }
   }
@@ -30,10 +29,10 @@ export default function FormAddTodo({ createNewTask }) {
           setPrio(event.target.value);
         }}
       >
+        <option>None</option>
         <option>High priority</option>
         <option>Medium priority</option>
         <option>Low priority</option>
-        <option>None</option>
       </select>
       <button type="submit" className="for-submit">
         Add
