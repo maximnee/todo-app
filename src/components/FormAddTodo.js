@@ -4,12 +4,14 @@ import { useState } from "react";
 export default function FormAddTodo({ createNewTask }) {
   const [value, setValue] = useState("");
   const [prio, setPrio] = useState("None");
+  const today = new Date();
+  today.toUTCString();
 
   function addToDo(event) {
     event.preventDefault();
 
     if (value.trim()) {
-      createNewTask(value, prio);
+      createNewTask(value, prio, today);
       setValue("");
     }
   }
@@ -24,6 +26,7 @@ export default function FormAddTodo({ createNewTask }) {
         value={value}
       />
       <select
+        className="dropdown-styles"
         value={prio}
         onChange={(event) => {
           setPrio(event.target.value);

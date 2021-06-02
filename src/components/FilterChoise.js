@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 export default function FilterChoise({ choiceFilter }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("All");
 
   choiceFilter(value);
 
@@ -10,6 +10,7 @@ export default function FilterChoise({ choiceFilter }) {
     <div className="choice">
       <p>Tasks to display</p>
       <select
+        className="dropdown-styles"
         onChange={(event) => {
           setValue(event.target.value);
         }}

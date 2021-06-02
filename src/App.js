@@ -5,15 +5,42 @@ import FormAddTodo from "./components/FormAddTodo";
 import TodoList from "./components/TodoList";
 import ProgressBar from "./components/ProgressBar";
 
+//*
+//!
+
 function App() {
   const [todoList, setTodoList] = useState([
-    { text: "zero", id: 0, completed: false, priorityTask: "Medium priority" },
-    { text: "one", id: 1, completed: false, priorityTask: "Medium priority" },
-    { text: "two", id: 2, completed: true, priorityTask: "Medium priority" },
-    { text: "three", id: 3, completed: false, priorityTask: "Medium priority" },
+    {
+      text: "zero",
+      id: 0,
+      completed: false,
+      priorityTask: "Medium priority",
+      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+    },
+    {
+      text: "one",
+      id: 1,
+      completed: false,
+      priorityTask: "Medium priority",
+      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+    },
+    {
+      text: "two",
+      id: 2,
+      completed: true,
+      priorityTask: "Medium priority",
+      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+    },
+    {
+      text: "three",
+      id: 3,
+      completed: false,
+      priorityTask: "Medium priority",
+      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+    },
   ]);
 
-  function newTask(text, priorityTask) {
+  function newTask(text, priorityTask, today) {
     let rand = Math.random().toString(36).substr(2, 9);
 
     setTodoList(
@@ -23,6 +50,7 @@ function App() {
           id: rand,
           completed: false,
           priorityTask,
+          today,
         },
       ])
     );
@@ -50,19 +78,17 @@ function App() {
     setTodoList(newList);
   }
 
-  function choiceFilter(value) {
-    console.log(value);
-    // let newFilteredList = todoList.slice();
-    // if (value === "Done") {
-    //   newFilteredList = todoList.filter((item) => item.completed);
-    //   console.log(newFilteredList);
-    // }
-    // if (value === "Undone") {
-    //   newFilteredList = todoList.filter((item) => !item.completed);
-    //   console.log(newFilteredList);
-    // }
-    // setTodoList(newFilteredList);
+  function choiceFilter(choiseFilt) {
+    console.log(choiseFilt);
   }
+
+  // const filter_map = {
+  //   All: () => true,
+  //   Done: (item) => !item.completed,
+  //   Undone: (item) => item.completed,
+  // };
+  // const filter_names = Object.keys(filter_map);
+  // console.log(filter_names);
 
   return (
     <div className="main">
@@ -73,6 +99,12 @@ function App() {
           <FormAddTodo createNewTask={newTask} />
 
           <FilterChoise choiceFilter={choiceFilter} />
+          <div className="sorting">
+            <div>Sort by: </div>
+            <button className="sorting-btn">Date</button>
+            <button className="sorting-btn">Asc</button>
+            <button className="sorting-btn">Desc</button>
+          </div>
         </div>
 
         <TodoList todoList={todoList} changeCompleted={changeCompleted} deleteTask={deleteTask} />

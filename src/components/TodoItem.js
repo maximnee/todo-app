@@ -18,7 +18,7 @@ export default function TodoItem({ item, changeCompleted, deleteTask }) {
 
   return (
     <div className="task-item">
-      <div className={styles.join(" ")}>{item.text}</div>
+      <div className={styles.join(" ")}> {item.text}</div>
       <div className="priority-img">
         <div className={forPriority.join(" ")}>{item.priorityTask}</div>
         <img
