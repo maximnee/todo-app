@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import FilterChoise from "./components/FilterChoise";
 import FormAddTodo from "./components/FormAddTodo";
@@ -7,38 +7,41 @@ import ProgressBar from "./components/ProgressBar";
 
 //*
 //!
+// [
+//   {
+//     text: "zero",
+//     id: 0,
+//     completed: false,
+//     priorityTask: "Medium priority",
+//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+//   },
+//   {
+//     text: "one",
+//     id: 1,
+//     completed: false,
+//     priorityTask: "Medium priority",
+//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+//   },
+//   {
+//     text: "two",
+//     id: 2,
+//     completed: true,
+//     priorityTask: "Medium priority",
+//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+//   },
+//   {
+//     text: "three",
+//     id: 3,
+//     completed: false,
+//     priorityTask: "Medium priority",
+//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
+//   },
+// ];
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    {
-      text: "zero",
-      id: 0,
-      completed: false,
-      priorityTask: "Medium priority",
-      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-    },
-    {
-      text: "one",
-      id: 1,
-      completed: false,
-      priorityTask: "Medium priority",
-      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-    },
-    {
-      text: "two",
-      id: 2,
-      completed: true,
-      priorityTask: "Medium priority",
-      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-    },
-    {
-      text: "three",
-      id: 3,
-      completed: false,
-      priorityTask: "Medium priority",
-      date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
+  const [filt, setFilt] = useState("All");
+  const [filteredList, setFilteredList] = useState([]);
 
   function newTask(text, priorityTask, today) {
     let rand = Math.random().toString(36).substr(2, 9);
@@ -78,17 +81,40 @@ function App() {
     setTodoList(newList);
   }
 
-  function choiceFilter(choiseFilt) {
-    console.log(choiseFilt);
+  function filterHandler() {
+    switch (filt) {
+      case "Done":
+        setFilteredList(todoList.filter((item) => item.completed === true));
+        break;
+      case "Undone":
+        setFilteredList(todoList.filter((item) => item.completed === false));
+        break;
+      default:
+        setFilteredList(todoList);
+        break;
+    }
   }
 
-  // const filter_map = {
-  //   All: () => true,
-  //   Done: (item) => !item.completed,
-  //   Undone: (item) => item.completed,
-  // };
-  // const filter_names = Object.keys(filter_map);
-  // console.log(filter_names);
+  useEffect(() => {
+    getLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    filterHandler();
+    createLocalStorage();
+  }, [todoList, filt]);
+
+  const createLocalStorage = () => {
+    localStorage.setItem("todoItem", JSON.stringify(todoList));
+  };
+
+  const getLocalStorage = () => {
+    if (localStorage.getItem("todoItem" === null)) {
+      localStorage.setItem("todoItem", JSON.stringify([]));
+    } else {
+      setTodoList(JSON.parse(localStorage.getItem("todoItem")));
+    }
+  };
 
   return (
     <div className="main">
@@ -98,16 +124,10 @@ function App() {
         <div>
           <FormAddTodo createNewTask={newTask} />
 
-          <FilterChoise choiceFilter={choiceFilter} />
-          <div className="sorting">
-            <div>Sort by: </div>
-            <button className="sorting-btn">Date</button>
-            <button className="sorting-btn">Asc</button>
-            <button className="sorting-btn">Desc</button>
-          </div>
+          <FilterChoise choiceFilter={setFilt} />
         </div>
 
-        <TodoList todoList={todoList} changeCompleted={changeCompleted} deleteTask={deleteTask} />
+        <TodoList todoList={filteredList} changeCompleted={changeCompleted} deleteTask={deleteTask} />
         <ProgressBar todoList={todoList} />
       </div>
     </div>

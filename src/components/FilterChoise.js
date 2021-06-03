@@ -1,20 +1,17 @@
 import React from "react";
-import { useState } from "react";
 
 export default function FilterChoise({ choiceFilter }) {
-  const [value, setValue] = useState("All");
-
-  choiceFilter(value);
+  const statusHandler = (event) => {
+    choiceFilter(event.target.value);
+  };
 
   return (
     <div className="choice">
       <p>Tasks to display</p>
       <select
         className="dropdown-styles"
-        onChange={(event) => {
-          setValue(event.target.value);
-        }}
-        value={value}
+        onChange={statusHandler}
+        // value={value}
       >
         <option>All</option>
         <option>Done</option>
