@@ -11,10 +11,20 @@ export default function TodoItem({ item, changeCompleted, deleteTask }) {
     forPriority.push("done");
   }
 
-  if (item.priorityTask === "High priority") forPriority.push("red-text");
-  if (item.priorityTask === "Medium priority") forPriority.push("yellow-text");
-  if (item.priorityTask === "Low priority") forPriority.push("green-text");
-  if (item.priorityTask === "None") forPriority.push("none-text");
+  switch (item.priorityTask) {
+    case "High priority":
+      forPriority.push("red-text");
+      break;
+    case "Medium priority":
+      forPriority.push("yellow-text");
+      break;
+    case "Low priority":
+      forPriority.push("green-text");
+      break;
+    default:
+      forPriority.push("none-text");
+      break;
+  }
 
   return (
     <div className="task-item">
@@ -24,7 +34,7 @@ export default function TodoItem({ item, changeCompleted, deleteTask }) {
         <img
           className="images-item"
           src={doneButtonImg}
-          alt="abc"
+          alt="done"
           height="20px"
           width="20px"
           onClick={() => {
@@ -34,7 +44,7 @@ export default function TodoItem({ item, changeCompleted, deleteTask }) {
         <img
           className="images-item"
           src={undoneButtonImg}
-          alt="abc"
+          alt="delete"
           height="19px"
           width="19px"
           onClick={() => {

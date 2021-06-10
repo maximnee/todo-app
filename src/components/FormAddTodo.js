@@ -5,7 +5,7 @@ export default function FormAddTodo({ createNewTask }) {
   const [value, setValue] = useState("");
   const [prio, setPrio] = useState("None");
   const today = new Date();
-  today.toUTCString();
+  //.toISOString().replace(/T/, " ").replace(/\..+/, "")
 
   function addToDo(event) {
     event.preventDefault();

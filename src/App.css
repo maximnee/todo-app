@@ -70,6 +70,29 @@ body {
   margin: 10px 0px;
 }
 
+.sorting {
+  display: flex;
+}
+
+.sorting-btn {
+  display: flex;
+  margin: 0px 0px 0px 15px;
+  padding: 20px 15px 20px 15px;
+  height: 30px;
+  align-items: center;
+  background-color: #000000;
+  color: #9fa2c6;
+  border: none;
+  border-radius: 10px;
+  filter: blur(1px) grayscale(1);
+}
+
+.sorting-btn:hover {
+  filter: none;
+  transform: scale(1.1);
+  transition: 0.3s ease 0.3s;
+}
+
 .choice > p {
   padding-right: 10px;
 }

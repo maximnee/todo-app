@@ -4,44 +4,16 @@ import FilterChoise from "./components/FilterChoise";
 import FormAddTodo from "./components/FormAddTodo";
 import TodoList from "./components/TodoList";
 import ProgressBar from "./components/ProgressBar";
+import Sorting from "./components/Sorting";
 
 //*
 //!
-// [
-//   {
-//     text: "zero",
-//     id: 0,
-//     completed: false,
-//     priorityTask: "Medium priority",
-//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-//   },
-//   {
-//     text: "one",
-//     id: 1,
-//     completed: false,
-//     priorityTask: "Medium priority",
-//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-//   },
-//   {
-//     text: "two",
-//     id: 2,
-//     completed: true,
-//     priorityTask: "Medium priority",
-//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-//   },
-//   {
-//     text: "three",
-//     id: 3,
-//     completed: false,
-//     priorityTask: "Medium priority",
-//     date: "Fri May 21 2021 23:15:49 GMT+0300 (Восточная Европа, летнее время)",
-//   },
-// ];
 
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [filt, setFilt] = useState("All");
   const [filteredList, setFilteredList] = useState([]);
+  const [typeOfSort, setTypeOfSort] = useState();
 
   function newTask(text, priorityTask, today) {
     let rand = Math.random().toString(36).substr(2, 9);
@@ -116,6 +88,31 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    makeSort();
+  }, [typeOfSort]);
+
+  function makeSort() {
+    switch (typeOfSort) {
+      case "ByAsc":
+        console.log("Выполнена сортировка по возрастанию");
+        setTodoList(todoList.slice(0).sort((a, b) => (a.text > b.text ? 1 : -1)));
+        break;
+      case "ByDesc":
+        console.log("Выполнена сортировка по убыванию");
+        setTodoList([...todoList].sort((a, b) => (a.text < b.text ? 1 : -1)));
+        break;
+      case "ByDate":
+        console.log("Выполнена сортировка по дате");
+        setTodoList(todoList.slice(0).sort((a, b) => a.today - b.today));
+        //new Date(a.today).getTime() - new Date(b.today).getTime()
+        break;
+      default:
+        console.log("Проблема");
+        break;
+    }
+  }
+
   return (
     <div className="main">
       <div className="backside">
@@ -125,6 +122,8 @@ function App() {
           <FormAddTodo createNewTask={newTask} />
 
           <FilterChoise choiceFilter={setFilt} />
+
+          <Sorting makeSort={setTypeOfSort} />
         </div>
 
         <TodoList todoList={filteredList} changeCompleted={changeCompleted} deleteTask={deleteTask} />

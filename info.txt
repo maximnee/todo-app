@@ -15,46 +15,7 @@
 15) Выбор категорий (работа, персональное, тренировка)
 16) Локальное хранилище
 
-Что готово: 1 2 3 4 5 6 7 8!!!! 16
+Что готово: 1 2 3 4 5 6 7 8!!!! 16 ё1
 
-Осталось: 9 10 11 12 13 14 15 
+Осталось: 9 10 11 13 14 15 
 
-
-  // const filter_map = {
-  //   All: () => true,
-  //   Done: (item) => !item.completed,
-  //   Undone: (item) => item.completed,
-  // };
-  // const filter_names = Object.keys(filter_map);
-  // console.log(filter_names);
-
-  <div className="sorting">
-            <div>Sort by: </div>
-            <button className="sorting-btn">Date</button>
-            <button className="sorting-btn">Asc</button>
-            <button className="sorting-btn">Desc</button>
-          </div>
-
-после 72
-
-.sorting {
-  display: flex;
-}
-
-.sorting-btn {
-  display: flex;
-  margin: 0px 0px 0px 15px;
-  padding: 20px 15px 20px 15px;
-  height: 30px;
-  align-items: center;
-  background-color: #000000;
-  color: #9fa2c6;
-  border: none;
-  border-radius: 10px;
-  filter: blur(1px) grayscale(1);
-}
-
-.sorting-btn:hover {
-  filter: none;
-  transform: scale(1.1);
-}

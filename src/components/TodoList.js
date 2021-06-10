@@ -5,7 +5,7 @@ export default function TodoList({ todoList, changeCompleted, deleteTask }) {
   return (
     <ul>
       {todoList.map((item) => {
-        console.log(item);
+        // console.log(item);
         return <TodoItem item={item} key={item.id} changeCompleted={changeCompleted} deleteTask={deleteTask} />;
       })}
     </ul>
